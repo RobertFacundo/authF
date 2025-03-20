@@ -8,11 +8,8 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const API_URL = import.meta.env.MODE === 'development'
-      ? 'http://localhost:3000'
-      : 'https://backend-omega-lime-52.vercel.app/';
 
-    fetch(`${API_URL}/`)
+    fetch('https://backend-nq2fkaoc0-robertfacundos-projects.vercel.app/')
       .then((response) => response.text())
       .then((data) => setMessage(data))
       .catch((error) => console.error('Error fetching Hello:', error));
