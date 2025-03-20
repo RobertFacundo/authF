@@ -5,18 +5,18 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
 
-  // useEffect(() => {
-  //   const API_URL = import.meta.env.MODE === 'development'
-  //     ? 'http://localhost:3000'
-  //     : 'https://backend-five-liard.vercel.app/';
+  useEffect(() => {
+    const API_URL = import.meta.env.MODE === 'development'
+      ? 'http://localhost:3000'
+      : 'https://backend-omega-lime-52.vercel.app/';
 
-  //   fetch(`${API_URL}/`)
-  //     .then((response) => response.text())
-  //     .then((data) => setMessage(data))
-  //     .catch((error) => console.error('Error fetching Hello:', error));
-  // }, []);
+    fetch(`${API_URL}/`)
+      .then((response) => response.text())
+      .then((data) => setMessage(data))
+      .catch((error) => console.error('Error fetching Hello:', error));
+  }, []);
 
 
   return (
@@ -30,7 +30,7 @@ function App() {
         </a>
       </div>
       <h1>!!Vite + React!!</h1>
-      {/* <h2>{message}</h2> */}
+      <h2>{message}</h2>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
