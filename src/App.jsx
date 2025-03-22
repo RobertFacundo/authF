@@ -7,9 +7,12 @@ function App() {
   const [count, setCount] = useState(0)
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
+  const API_URL = import.meta.env.VITE_API_URL;
 
-    fetch('https://backend-nq2fkaoc0-robertfacundos-projects.vercel.app/')
+  useEffect(() => {
+    console.log(`🚀 Running in ${import.meta.env.MODE.toUpperCase()} mode. Fetching from: ${API_URL}`);
+
+    fetch(API_URL)
       .then((response) => response.text())
       .then((data) => setMessage(data))
       .catch((error) => console.error('Error fetching Hello:', error));
