@@ -1,22 +1,14 @@
-import { useState, useEffect} from 'react'
+import { useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [message, setMessage] = useState('');
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  useEffect(() => {
-    console.log(`🚀 Running in ${import.meta.env.MODE.toUpperCase()} mode. Fetching from: ${API_URL}`);
-
-    fetch(API_URL)
-      .then((response) => response.text())
-      .then((data) => setMessage(data))
-      .catch((error) => console.error('Error fetching Hello:', error));
-  }, []);
+  console.log(`🚀 Running in ${import.meta.env.MODE.toUpperCase()} mode. Fetching from: ${API_URL}`);
 
 
   return (
@@ -30,7 +22,6 @@ function App() {
         </a>
       </div>
       <h1>!!Vite + React!!\</h1>
-      <h2>{message}</h2>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
