@@ -22,6 +22,12 @@ The frontend is deployed on Vercel and the backend on Render and the entire proj
 ## Environment Variables
 Set appropriate environment variables for both frontend and backend to define API URLs and other settings based on the deployment environment (development or production).
 
+----
+
+### Frontend
+
+This project is built with React and utilizes React Router to handle the navigation. The application includes a authentication flow, where NavBar component provides links to Dashboard, Login, and Register.
+
 
 ----
 Created by Robert Facundo
