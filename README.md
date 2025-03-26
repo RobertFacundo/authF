@@ -24,7 +24,7 @@ Set appropriate environment variables for both frontend and backend to define AP
 
 ----
 
-### Frontend
+# Frontend
 
 This project is built with React and utilizes React Router to handle the navigation. The application includes a authentication flow, where NavBar component provides links to Dashboard, Login, and Register.
 
