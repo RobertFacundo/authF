@@ -28,6 +28,16 @@ Set appropriate environment variables for both frontend and backend to define AP
 
 This project is built with React and utilizes React Router to handle the navigation. The application includes a authentication flow, where NavBar component provides links to Dashboard, Login, and Register.
 
+## Dashboard 
+The Dashboard serves as the main landing page of the application. It offers an overview of the authentication process and acts as a central point for users after completing certain actions such as email verification. On this page, users can:
+
+- See the status of their account: A green check icon (initially displayed with low opacity) indicates whether the email verification has been successful.
+
+- Review authentication details: The dashboard explains the registration flow, including data validation, the confirmation email process, and the password reset functionality.
+
+- Access key features: It provides clear instructions on how to register with a valid, non-fictitious email address to ensure successful verification, and informs users about the option to reset their password if forgotten.
+
+The dashboard is styled using Styled Components to create a clean and modern interface, using a "card" layout to present all relevant information in an organized manner. This design ensures that both new and returning users have a seamless, professional experience while navigating through the authentication process.
 
 ----
 Created by Robert Facundo
