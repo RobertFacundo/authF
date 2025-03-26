@@ -30,8 +30,8 @@ const NavBar = () => {
         <Nav>
             <NavLinks>
                 <StyledLink to="/">Dashboard</StyledLink>
-                <StyledLink to="Login">Login</StyledLink>
                 <StyledLink to="Register">Register</StyledLink>
+                <StyledLink to="Login">Login</StyledLink>
             </NavLinks>
         </Nav>
     )
