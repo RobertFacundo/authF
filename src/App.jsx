@@ -3,7 +3,19 @@ import NavBar from './components/nav/NavBar';
 import Dashboard from './views/Dashboard';
 import Login from './views/Login';
 import Register from './views/Register';
+import { createGlobalStyle } from 'styled-components';
 
+const GlobalStyle = createGlobalStyle`
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  }
+
+  body{
+    font-family: Arial, sans-serif;
+  }
+`;
 
 function App() {
 
@@ -12,6 +24,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyle />
       <NavBar />
       <Routes>
         <Route path="/" element={<Dashboard />} />

@@ -1,14 +1,39 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+const Nav = styled.nav`
+    background-color: #000;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    font-style: italic;
+`;
+
+const NavLinks = styled.div`
+    display: flex;
+    gap: 20px;
+`;
+
+const StyledLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+    &:hover {
+      color:  #ffd700;
+    }
+`;
 const NavBar = () => {
     return (
-        <nav>
-            <div>
-                <Link to="/">Dashboard</Link>
-                <Link to="Login">Login</Link>
-                <Link to="Register">Register</Link>
-            </div>
-        </nav>
+        <Nav>
+            <NavLinks>
+                <StyledLink to="/">Dashboard</StyledLink>
+                <StyledLink to="Login">Login</StyledLink>
+                <StyledLink to="Register">Register</StyledLink>
+            </NavLinks>
+        </Nav>
     )
 };
 
