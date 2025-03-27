@@ -39,6 +39,32 @@ The Dashboard serves as the main landing page of the application. It offers an o
 
 The dashboard is styled using Styled Components to create a clean and modern interface, using a "card" layout to present all relevant information in an organized manner. This design ensures that both new and returning users have a seamless, professional experience while navigating through the authentication process.
 
+## Authentication Flow using Context
+
+The authentication state is managed using React's useContext hook. The AuthContext provides global authentication status (isAuthenticated) and an updater function (setAuth).
+
+### VerifyEmail Component
+
+The VerifyEmail component is responsible for handling email verification. When the user clicks the verification link sent via email, the application:
+
+Extracts the verification token from the URL.
+
+Sends a request to the backend to verify the token.
+
+If successful, updates the global authentication state via setAuth(true) and redirects the user to the Dashboard.
+
+If the verification fails, it displays an error message and keeps isAuthenticated as false.
+
+### AuthContext
+
+Provides authentication state (isAuthenticated) across the application.
+
+Updates authentication status when a user logs in, logs out, or verifies their email.
+
+Eliminates the need for prop drilling, allowing any component to access authentication status globally.
+
+By utilizing AuthContext, components like Dashboard can dynamically update the UI based on the user's authentication status without requiring props.
+
 ----
 Created by Robert Facundo
 --

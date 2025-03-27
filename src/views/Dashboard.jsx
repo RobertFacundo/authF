@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FaCheckCircle } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 
 const Card = styled.div`
     background-color: #fff;
@@ -29,7 +30,7 @@ const Highlight = styled.strong`
 const CheckIcon = styled(FaCheckCircle)`
   color: #28a745; 
   font-size: 2rem;
-  opacity: 0.2; 
+  opacity: ${(props) => (props.active ? 1 : 0.2)}; 
   transition: opacity 0.3s ease;
   margin-left: 0.5rem;
   margin-top: 0.5rem;
@@ -52,11 +53,13 @@ const StatusText = styled.p`
 
 
 const Dashboard = () => {
+    const { isAuthenticated } = useAuth();
+
     return (
         <>
             <AuthStatus>
-                <CheckIcon />
-                <StatusText>User not yet authenticated</StatusText>
+                <CheckIcon active={isAuthenticated} />
+                <StatusText>{isAuthenticated ? 'User authenticated' : 'User not yet authenticated'}</StatusText>
             </AuthStatus>
             <Card>
                 <Paragraph>

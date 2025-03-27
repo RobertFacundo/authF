@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/nav/NavBar';
 import Dashboard from './views/Dashboard';
 import Login from './views/Login';
 import Register from './views/Register';
 import { createGlobalStyle } from 'styled-components';
+import VerifyEmail from './views/VerifyEmail';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -27,6 +29,7 @@ function App() {
       <GlobalStyle />
       <NavBar />
       <Routes>
+        <Route path='/verify-email/:verificationToken' element={<VerifyEmail />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
         <Route path='/Register' element={<Register />} />
