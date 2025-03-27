@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { Container, Form, FieldContainer, Input, Button, IconButton, ErrorMessage, SuccessMessage } from "./authFormStyles";
+import { Container, Form, FieldContainer, Input, Button, IconButton, ErrorMessage, SuccessMessage } from "./AuthFormStyles.js";
 
 const AuthForm = ({ type }) => {
     const isRegister = type === 'register';
