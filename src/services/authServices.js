@@ -5,7 +5,7 @@ export const RegisterService = async (user) => {
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, user);
         return response.data
     }catch(error){
-        console.log(error)
+        console.error('Error en RegisterService:', error.response || error.message);
         throw error;
     };
 };
