@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterService, LoginService } from "../services/authServices";
 import { validateInputs } from "../utils/validateInputs";
+import checkEmailExists from "../services/checkEmailService";
 
 const useAuth = (type) => {
     const [credentials, setCredentials] = useState({
@@ -13,6 +14,7 @@ const useAuth = (type) => {
     });
     const [captchaToken, setCaptchaToken] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
@@ -37,28 +39,38 @@ const useAuth = (type) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (type === 'register' && !captchaToken) {
+            setError('Please, validate captcha to continue');
+            return;
+        }
         const validationError = validateInputs(credentials.email, credentials.password);
         if (validationError) {
             setError(validationError);
             return;
         }
 
-        if (type === 'register' && !captchaToken) {
-            setError('Please, validate captcha to continue');
-            return;
-        }
-
         setSuccess(null);
+        setLoading(true)
+        setError(null)
 
         try {
             let response;
-            const user = {...credentials, captchaToken}
+
+            const emailExists = await checkEmailExists(credentials.email)
+            if (emailExists) {
+                setError('Email already registered')
+                setLoading(false);
+                return;
+            }
+
+            const user = { ...credentials, captchaToken }
             console.log(user, 'consolelog before calling service')
 
             if (type === 'register') {
                 response = await RegisterService(user);
                 setSuccess('Successfull register 🎉  Check your email inbox to validate your email...');
             } else if (type === 'login') {
+                setLoading(true)
                 response = await LoginService({ email: credentials.email, password: credentials.password });
                 setSuccess('Successfull login 🎉 Redirecting to dashboard');
 
@@ -69,6 +81,8 @@ const useAuth = (type) => {
         } catch (error) {
             setError('Error al procesar la solicitud. Inténtalo de nuevo');
             console.error('Error en autenticación:', error)
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -80,6 +94,7 @@ const useAuth = (type) => {
         handleSubmit,
         error,
         success,
+        loading
     }
 };
 
