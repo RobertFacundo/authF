@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { validationService } from "../services/emailValidationService";
 import { useAuth } from "../contexts/AuthContext";
+import { Container, SuccessMessage, ErrorMessage } from "../components/auth/AuthFormStyles";
+import LoadingSpinner from "../components/common/Loader";
 
 
 const VerifyEmail = () => {
@@ -40,10 +42,10 @@ const VerifyEmail = () => {
 
     return (
 
-        <div>
-            {verificationStatus === 'success' && <p>Email verified successfully. Redirecting...</p>}
-            {verificationStatus === 'failure' && <p>Verification failed. Please try again later.</p>}
-        </div>
+        <Container>
+            {verificationStatus === 'success' && <SuccessMessage>Email verified successfully. Redirecting... <br /> <LoadingSpinner /></SuccessMessage>}
+            {verificationStatus === 'failure' && <ErrorMessage>Verification failed. Please try again later.</ErrorMessage>}
+        </Container>
     )
 };
 

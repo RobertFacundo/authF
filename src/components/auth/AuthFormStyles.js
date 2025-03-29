@@ -9,6 +9,9 @@ export const Container = styled.div`
     width: 350px; /* Menor ancho para un diseño más compacto */
     margin: auto;
     text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 2rem;
 `;
 
