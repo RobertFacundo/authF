@@ -43,7 +43,7 @@ const AuthForm = ({ type }) => {
 
                         {isRegister && (
                            <CaptchaContainer>
-                             <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} />
+                             <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange}  theme="dark" />
                            </CaptchaContainer>
                         )}
                         <Button type='submit'>{isRegister ? 'Register' : 'Log In'}</Button>

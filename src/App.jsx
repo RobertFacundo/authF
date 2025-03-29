@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     font-family: Arial, sans-serif;
+    background: url('/binding_dark.webp') repeat;
   }
 `;
 

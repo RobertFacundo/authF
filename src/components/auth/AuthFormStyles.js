@@ -28,6 +28,7 @@ export const FieldContainer = styled.div`
     align-items: flex-start;  /* Alineación más limpia */
     gap: 0.5rem;
     width: 100%;
+    position: relative;
 `;
 
 export const Input = styled.input`
@@ -40,8 +41,20 @@ export const Input = styled.input`
     width: 100%; /* Asegurarse que ocupe todo el ancho del contenedor */
 
     &:focus {
-        border-color: #FFD700; /* Amarillo al enfocarse */
+        border-color: white; /* Amarillo al enfocarse */
     }
+`;
+
+export const IconButton = styled.button`
+    position: absolute;
+    right: 10px; /* Ajusta la posición a la derecha */
+    top: 70%;
+    transform: translateY(-50%); /* Centrar verticalmente */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+
 `;
 
 export const Button = styled.button`
@@ -59,13 +72,6 @@ export const Button = styled.button`
     }
 `;
 
-export const IconButton = styled.button`
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 5px;
-    color: white;
-`;
 
 export const ErrorMessage = styled.p`
     margin-top: 1rem;
