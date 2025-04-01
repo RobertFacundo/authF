@@ -87,21 +87,16 @@ const useAuth = (type) => {
     };
 
     const handleGitHubLogin = () => {
-        console.log('Paso numero 1')
         window.location.href = `${import.meta.env.VITE_API_URL}/auth/github`
     }
 
     const handleGitHubCallBack = async (code) => {
         setLoading(true);
         try {
-            console.log('paso numero 5 llamando a github service =>')
             const token = await GitHubService(code);
-            console.log(token, 'console.LOG !!!!!!!')
             if (token) {
-                console.log(' PASO NUMERO 6 =>GitHub login successful. Token received:', token);
                 localStorage.setItem('authToken', token);
                 setSuccess('GitHub login successfull 🎉 Redirecting to dashboard');
-                console.log('paso 7 seteado success')
                 return { success: true }
             } else {
                 setError('GitHub login failed')

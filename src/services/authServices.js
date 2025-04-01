@@ -24,7 +24,6 @@ export const GitHubService = async (code) => {
     const url = `${import.meta.env.VITE_API_URL}/auth/github/callback?code=${code}`;
     try {
         const response = await axios.get(url);
-        console.log('<= paso NUMERO 6 respuesta de la llamada githubservice!!!! (retornando a handlegithubcallback)',response.data)
         return response.data;
     } catch (error) {
         console.error('Error during github authentication', error.response || error.message);

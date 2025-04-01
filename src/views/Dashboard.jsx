@@ -56,7 +56,6 @@ const StatusText = styled.p`
 
 const Dashboard = () => {
     const { isAuthenticated } = AuthContext();
-    const [verificationStatus, setVerificationStatus] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const { setIsAuthenticated } = AuthContext();
@@ -74,15 +73,13 @@ const Dashboard = () => {
         const verifyGitHub = async () => {
             try {
                 const response = await handleGitHubCallBack(code);
-                console.log(response, 'response efffectttt!!!!')
                 if (response.success) {
-                    setVerificationStatus('success');
                     setIsAuthenticated(true)
                 } else {
-                    setVerificationStatus('failure');
+                    setIsAuthenticated(false)
                 }
             } catch (error) {
-                setVerificationStatus('failure');
+                setIsAuthenticated(false)
                 console.error(error)
             }
         };
