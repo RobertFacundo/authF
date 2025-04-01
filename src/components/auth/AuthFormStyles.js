@@ -89,3 +89,8 @@ export const CaptchaContainer = styled.div`
     width: 100%;
     margin-bottom: 1rem; /* Separación entre captcha y botón */
 `;
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 40px; 
+  flex-wrap: wrap; 
+`;

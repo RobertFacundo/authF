@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { RegisterService, LoginService } from "../services/authServices";
+import { RegisterService, LoginService, GitHubService } from "../services/authServices";
 import { validateInputs } from "../utils/validateInputs";
 import checkEmailExists from "../services/checkEmailService";
 
@@ -86,6 +86,36 @@ const useAuth = (type) => {
         }
     };
 
+    const handleGitHubLogin = () => {
+        console.log('Paso numero 1')
+        window.location.href = `${import.meta.env.VITE_API_URL}/auth/github`
+    }
+
+    const handleGitHubCallBack = async (code) => {
+        setLoading(true);
+        try {
+            console.log('paso numero 5 llamando a github service =>')
+            const token = await GitHubService(code);
+            console.log(token, 'console.LOG !!!!!!!')
+            if (token) {
+                console.log(' PASO NUMERO 6 =>GitHub login successful. Token received:', token);
+                localStorage.setItem('authToken', token);
+                setSuccess('GitHub login successfull 🎉 Redirecting to dashboard');
+                console.log('paso 7 seteado success')
+                return { success: true }
+            } else {
+                setError('GitHub login failed')
+                return { success: false }
+            }
+        } catch (error) {
+            setError('Error during GitHub authentication');
+            console.error(error)
+            return { success: false }
+        } finally {
+            setLoading(false)
+        }
+    };
+
     return {
         credentials,
         handleChange,
@@ -94,7 +124,9 @@ const useAuth = (type) => {
         handleSubmit,
         error,
         success,
-        loading
+        loading,
+        handleGitHubCallBack,
+        handleGitHubLogin
     }
 };
 

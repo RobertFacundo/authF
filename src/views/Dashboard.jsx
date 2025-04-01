@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {useLocation, useNavigate} from 'react-router-dom';
 import styled from "styled-components";
 import { FaCheckCircle } from "react-icons/fa";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth as AuthContext } from '../contexts/AuthContext';
+import useAuth from "../hooks/useAuth";
 
 const Card = styled.div`
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
     border-radius: 8px;
     padding: 2rem;
     margin: 2rem auto;
@@ -53,7 +55,40 @@ const StatusText = styled.p`
 
 
 const Dashboard = () => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = AuthContext();
+    const [verificationStatus, setVerificationStatus] = useState(false)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { setIsAuthenticated } = AuthContext();
+    const { handleGitHubCallBack } = useAuth()
+
+    const params = new URLSearchParams(location.search);
+    const code = params.get('code');
+    console.log('Received code:', code);
+
+    useEffect(() => {
+        if (!code) {
+            console.log('No code parameter found in the URL');
+            return;
+        }
+        const verifyGitHub = async () => {
+            try {
+                const response = await handleGitHubCallBack(code);
+                console.log(response, 'response efffectttt!!!!')
+                if (response.success) {
+                    setVerificationStatus('success');
+                    setIsAuthenticated(true)
+                } else {
+                    setVerificationStatus('failure');
+                }
+            } catch (error) {
+                setVerificationStatus('failure');
+                console.error(error)
+            }
+        };
+
+        verifyGitHub();
+    }, [code, navigate, setIsAuthenticated]);
 
     return (
         <>

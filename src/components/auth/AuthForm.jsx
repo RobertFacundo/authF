@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import LoadingSpinner from "../common/Loader.jsx";
-import { Container, Form, FieldContainer, Input, Button, IconButton, ErrorMessage, SuccessMessage, CaptchaContainer } from "./AuthFormStyles.js";
+import { Container, Form, FieldContainer, Input, Button, ButtonContainer, IconButton, ErrorMessage, SuccessMessage, CaptchaContainer } from "./AuthFormStyles.js";
 
 const AuthForm = ({ type }) => {
     const isRegister = type === 'register';
-    const { handleChange, credentials, togglePasswordVisibility, handleCaptchaChange, handleSubmit, error, success, loading } = useAuth(type);
+    const { handleChange, credentials, togglePasswordVisibility, handleCaptchaChange, handleSubmit, error, success, loading, handleGitHubLogin} = useAuth(type);
 
+    
     return (
         <Container>
             {!loading && !success && (
@@ -42,11 +44,17 @@ const AuthForm = ({ type }) => {
                         </FieldContainer>
 
                         {isRegister && (
-                           <CaptchaContainer>
-                             <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange}  theme="dark" />
-                           </CaptchaContainer>
+                            <CaptchaContainer>
+                                <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={handleCaptchaChange} theme="dark" />
+                            </CaptchaContainer>
                         )}
-                        <Button type='submit'>{isRegister ? 'Register' : 'Log In'}</Button>
+                        <ButtonContainer>
+                            <Button type='submit'>{isRegister ? 'Register' : 'Log In'}</Button>
+                            <Button type="button" onClick={handleGitHubLogin} >
+                                <FontAwesomeIcon icon={faGithub} style={{ marginRight: "5px" }} />
+                                Sign in with GitHub
+                            </Button>
+                        </ButtonContainer>
                     </Form>
                 </>
             )}

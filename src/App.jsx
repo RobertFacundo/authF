@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/nav/NavBar';
 import Dashboard from './views/Dashboard';
@@ -6,6 +6,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import { createGlobalStyle } from 'styled-components';
 import VerifyEmail from './views/VerifyEmail';
+// import GitHubVerification from './views/GitHubVerification';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -30,6 +31,7 @@ function App() {
       <GlobalStyle />
       <NavBar />
       <Routes>
+        {/* <Route path='/auth/github/callback' element={<GitHubVerification />} /> */}
         <Route path='/verify-email/:verificationToken' element={<VerifyEmail />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
