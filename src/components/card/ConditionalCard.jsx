@@ -29,7 +29,7 @@ const ConditionalCard = () => {
     return (
         <Container>
             <Header>User already authenticated</Header>
-            <Paragraph>You cand try now change your password or even log out</Paragraph>
+            <Paragraph>You can now proceed to change your password or log out</Paragraph>
             <ButtonContainer style={{ marginLeft: '2rem' }}>
                 <Button onClick={handleLogOut}>Log out</Button>
                 <Button>Change Password</Button>
