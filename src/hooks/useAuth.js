@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RegisterService, LoginService, GitHubService } from "../services/authServices";
 import { validateInputs } from "../utils/validateInputs";
 import checkEmailExists from "../services/checkEmailService";
+import { useAuth as AuthContext } from "../contexts/AuthContext";
 
 const useAuth = (type) => {
     const [credentials, setCredentials] = useState({
@@ -17,6 +18,7 @@ const useAuth = (type) => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
+    const { setIsAuthenticated } = AuthContext()
 
     const handleChange = (e) => {
         setCredentials((prevState) => ({
@@ -56,25 +58,30 @@ const useAuth = (type) => {
         try {
             let response;
 
-            const emailExists = await checkEmailExists(credentials.email)
-            if (emailExists) {
-                setError('Email already registered')
-                setLoading(false);
-                return;
+            if (type === 'register') {
+                const emailExists = await checkEmailExists(credentials.email)
+                if (emailExists) {
+                    setError('Email already registered')
+                    setLoading(false);
+                    return;
+                }
             }
 
-            const user = { ...credentials, captchaToken }
+            let user = { ...credentials, captchaToken }
             console.log(user, 'consolelog before calling service')
 
             if (type === 'register') {
                 response = await RegisterService(user);
                 setSuccess('Successfull register 🎉  Check your email inbox to validate your email...');
             } else if (type === 'login') {
+                const loginUser = { email: credentials.email, password: credentials.password }
                 setLoading(true)
-                response = await LoginService({ email: credentials.email, password: credentials.password });
+                
+                response = await LoginService(loginUser);
+                localStorage.setItem('authToken', response.access_token)
                 setSuccess('Successfull login 🎉 Redirecting to dashboard');
-
-                setTimeout(() => navigate('/'), 2000);
+                setIsAuthenticated(true)
+                setTimeout(() => navigate('/'), 150);
             }
 
             setError(null);
@@ -96,6 +103,7 @@ const useAuth = (type) => {
             const token = await GitHubService(code);
             if (token) {
                 localStorage.setItem('authToken', token);
+                console.log(token, 'token guardado en localstorage')
                 setSuccess('GitHub login successfull 🎉 Redirecting to dashboard');
                 return { success: true }
             } else {
@@ -111,6 +119,23 @@ const useAuth = (type) => {
         }
     };
 
+    const handleLogOut = () => {
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken, 'log logout')
+
+        if (authToken) {
+            console.log('removingtoken', authToken)
+            localStorage.removeItem(authToken)
+        } else {
+            console.log('Notokenfound')
+        }
+
+        setIsAuthenticated(false);
+
+        console.log('redirecting')
+        navigate('/')
+    }
+
     return {
         credentials,
         handleChange,
@@ -121,7 +146,8 @@ const useAuth = (type) => {
         success,
         loading,
         handleGitHubCallBack,
-        handleGitHubLogin
+        handleGitHubLogin,
+        handleLogOut
     }
 };
 

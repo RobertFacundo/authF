@@ -1,10 +1,13 @@
 import React from "react";
 import AuthForm from "../components/auth/AuthForm";
+import { useAuth } from '../contexts/AuthContext'
+import ConditionalCard from "../components/card/ConditionalCard";
 
 const Register = () => {
+    const { isAuthenticated } = useAuth();
     return (
         <>
-            <AuthForm type='register' />
+            {isAuthenticated ? <ConditionalCard /> : <AuthForm type='register' />}
         </>
     )
 }

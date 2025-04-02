@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/nav/NavBar';
 import Dashboard from './views/Dashboard';
@@ -15,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;  
   }
 
-  body{
+  html, body{
     font-family: Arial, sans-serif;
     background: url('/binding_dark.webp') repeat;
   }
@@ -26,12 +25,12 @@ function App() {
   const API_URL = import.meta.env.VITE_API_URL;
   console.log(`🚀 Running in ${import.meta.env.MODE.toUpperCase()} mode. Fetching from: ${API_URL}`);
 
+
   return (
     <>
       <GlobalStyle />
       <NavBar />
       <Routes>
-        {/* <Route path='/auth/github/callback' element={<GitHubVerification />} /> */}
         <Route path='/verify-email/:verificationToken' element={<VerifyEmail />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
