@@ -5,6 +5,9 @@ import Login from './views/Login';
 import Register from './views/Register';
 import { createGlobalStyle } from 'styled-components';
 import VerifyEmail from './views/VerifyEmail';
+import ForgotPassword from './views/ForgotPassword';
+import ResetPassword from './views/ResetPassword';
+
 // import GitHubVerification from './views/GitHubVerification';
 
 const GlobalStyle = createGlobalStyle`
@@ -35,6 +38,8 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/Login" element={<Login />} />
         <Route path='/Register' element={<Register />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password/:token' element={<ResetPassword />} />
       </Routes>
     </>
   )

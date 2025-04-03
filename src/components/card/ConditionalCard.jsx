@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import { Button, Container, ButtonContainer } from '../auth/AuthFormStyles';
-import useAuth from '../../hooks/useAuth'
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = styled.h1`
@@ -25,6 +26,7 @@ const Paragraph = styled.p`
 
 
 const ConditionalCard = () => {
+    const navigate = useNavigate();
     const { handleLogOut } = useAuth()
     return (
         <Container>
@@ -32,7 +34,7 @@ const ConditionalCard = () => {
             <Paragraph>You can now proceed to change your password or log out</Paragraph>
             <ButtonContainer style={{ marginLeft: '2rem' }}>
                 <Button onClick={handleLogOut}>Log out</Button>
-                <Button>Change Password</Button>
+                <Button onClick={() => navigate('/forgot-password')}>Change Password</Button>
             </ButtonContainer>
         </Container>
     )

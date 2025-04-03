@@ -4,6 +4,7 @@ import { RegisterService, LoginService, GitHubService } from "../services/authSe
 import { validateInputs } from "../utils/validateInputs";
 import checkEmailExists from "../services/checkEmailService";
 import { useAuth as AuthContext } from "../contexts/AuthContext";
+import { ResetPassword } from "../services/PasswordService";
 
 const useAuth = (type) => {
     const [credentials, setCredentials] = useState({
@@ -76,7 +77,7 @@ const useAuth = (type) => {
             } else if (type === 'login') {
                 const loginUser = { email: credentials.email, password: credentials.password }
                 setLoading(true)
-                
+
                 response = await LoginService(loginUser);
                 localStorage.setItem('authToken', response.access_token)
                 setSuccess('Successfull login 🎉 Redirecting to dashboard');
@@ -134,8 +135,18 @@ const useAuth = (type) => {
 
         console.log('redirecting')
         navigate('/')
-    }
+    };
 
+    const resetPassword = async (token, newPassword) => {
+        try {
+            const response = await ResetPassword(token, newPassword);
+            console.log(response, 'response del hook resetPassword')
+            return response.message;
+        } catch (error) {
+            console.error(error)
+            throw new Error(error);
+        };
+    };
     return {
         credentials,
         handleChange,
@@ -147,7 +158,8 @@ const useAuth = (type) => {
         loading,
         handleGitHubCallBack,
         handleGitHubLogin,
-        handleLogOut
+        handleLogOut,
+        resetPassword
     }
 };
 
