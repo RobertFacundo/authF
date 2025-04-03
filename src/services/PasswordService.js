@@ -16,6 +16,7 @@ export const ResetPassword = async (token, newPassword) => {
 
 export const ForgotPasswordService = async (email) => {
     try {
+        console.log('llamando a service')
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/auth/forgot-password`, { email });
         console.log(response, 'log del service ForgotPassword 1!')
         return response.data

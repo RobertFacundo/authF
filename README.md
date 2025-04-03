@@ -65,6 +65,18 @@ Eliminates the need for prop drilling, allowing any component to access authenti
 
 By utilizing AuthContext, components like Dashboard can dynamically update the UI based on the user's authentication status without requiring props.
 
+### Routes for Password Reset
+
+The application includes routes to facilitate password reset:
+
+- <Route path='/forgot-password' element={<ForgotPassword />} />
+- <Route path='/reset-password/:token' element={<ResetPassword />} />
+
+/forgot-password: Allows users to request a password reset by entering their email address. A reset link is sent to their registered email.
+
+/reset-password/:token: Enables users to set a new password after clicking the link received in their email. The token parameter is used to verify the request.
+
+These routes ensure a secure and seamless password recovery process.
 ----
 Created by Robert Facundo
 --

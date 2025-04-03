@@ -34,7 +34,7 @@ const ResetPassword = () => {
         try {
             const response = await resetPassword(token, newPassword); // Guardamos la respuesta en una constante
             console.log(response);
-            setMessage({ type: 'success', text: 'Password changed Successfully' });
+            setMessage({ type: 'success', text: 'Password changed Successfully. Redirecting...' });
             setTimeout(() => {
                 navigate('/Login')
             }, 3000)

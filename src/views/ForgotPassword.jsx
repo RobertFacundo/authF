@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { ForgotPasswordService } from "../services/PasswordService";
-import {Form, FieldContainer, Input, IconButton, Button, Container} from '../components/auth/AuthFormStyles'
+import {Form, Input, Button, Container} from '../components/auth/AuthFormStyles'
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
