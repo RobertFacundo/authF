@@ -78,6 +78,7 @@ The application includes routes to facilitate password reset:
 /reset-password/:token: Enables users to set a new password after clicking the link received in their email. The token parameter is used to verify the request.
 
 These routes ensure a secure and seamless password recovery process.
+
 ----
 Created by Robert Facundo
 --
