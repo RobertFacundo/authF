@@ -68,9 +68,10 @@ By utilizing AuthContext, components like Dashboard can dynamically update the U
 ### Routes for Password Reset
 
 The application includes routes to facilitate password reset:
-
-- <Route path='/forgot-password' element={<ForgotPassword />} />
-- <Route path='/reset-password/:token' element={<ResetPassword />} />
+```json
+<Route path='/forgot-password' element={<ForgotPassword />} />
+<Route path='/reset-password/:token' element={<ResetPassword />} />
+```
 
 /forgot-password: Allows users to request a password reset by entering their email address. A reset link is sent to their registered email.
 
