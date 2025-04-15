@@ -17,27 +17,27 @@ const AuthForm = ({ type }) => {
             {!loading && !success && (
                 <>
                     <h1>{isRegister ? 'Register' : 'Login'}</h1>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} data-testid='auth-form'>
                         {isRegister && (
                             <>
                                 <FieldContainer>
-                                    <label htmlFor="firstName">Name:</label>
-                                    <Input type='text' name='firstName' value={credentials.firstName} onChange={handleChange} required />
+                                    <label htmlFor="firstName" data-testid="first-name-label">Name:</label>
+                                    <Input id='firstName' type='text' name='firstName' value={credentials.firstName} onChange={handleChange} required />
                                 </FieldContainer>
                                 <FieldContainer>
                                     <label htmlFor="lastName">Last Name</label>
-                                    <Input type='text' name='lastName' value={credentials.lastName} onChange={handleChange} required />
+                                    <Input id='lastName' type='text' name='lastName' value={credentials.lastName} onChange={handleChange} required />
                                 </FieldContainer>
                             </>
                         )}
                         <FieldContainer>
                             <label htmlFor="email">Email</label>
-                            <Input type='email' name='email' value={credentials.email} onChange={handleChange} required />
+                            <Input id='email' type='email' name='email' value={credentials.email} onChange={handleChange} required />
                         </FieldContainer>
 
                         <FieldContainer>
                             <label htmlFor="password">Password</label>
-                            <Input type={credentials.isPasswordVisible ? 'text' : 'password'} name='password' value={credentials.password} onChange={handleChange} required />
+                            <Input id='password' type={credentials.isPasswordVisible ? 'text' : 'password'} name='password' value={credentials.password} onChange={handleChange} required />
                             <IconButton type="button" onClick={togglePasswordVisibility}>
                                 <FontAwesomeIcon icon={credentials.isPasswordVisible ? faEyeSlash : faEye} />
                             </IconButton>
@@ -50,7 +50,7 @@ const AuthForm = ({ type }) => {
                         )}
                         <ButtonContainer>
                             <Button type='submit'>{isRegister ? 'Register' : 'Log In'}</Button>
-                            <Button type="button" onClick={handleGitHubLogin} >
+                            <Button type="button" onClick={handleGitHubLogin}  data-testid="github-b">
                                 <FontAwesomeIcon icon={faGithub} style={{ marginRight: "5px" }} />
                                 Sign in with GitHub
                             </Button>

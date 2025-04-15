@@ -1,4 +1,8 @@
 ### Authentication WebSite
+![Coverage](https://img.shields.io/badge/coverage-66%25-brightgreen)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-orange)
+[![Swagger](https://img.shields.io/badge/API-Swagger-orange)](http://authb.onrender.com/api)
 
 This project consists of a 
 
@@ -78,6 +82,9 @@ The application includes routes to facilitate password reset:
 /reset-password/:token: Enables users to set a new password after clicking the link received in their email. The token parameter is used to verify the request.
 
 These routes ensure a secure and seamless password recovery process.
+
+### Component Testing
+All major components have been properly tested. Unit tests have been implemented to ensure that each component works as expected and handles edge cases effectively. Additionally, integration tests validate the interaction between the frontend and backend to ensure smooth communication and correct functionality during the authentication process.
 
 ----
 Created by Robert Facundo

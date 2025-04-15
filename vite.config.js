@@ -7,4 +7,9 @@ export default defineConfig({
   build: {
     outDir: "dist"  // Asegura que el output va a "dist"
   },
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    globals: true,
+  }
 })

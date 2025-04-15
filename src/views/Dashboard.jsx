@@ -90,7 +90,7 @@ const Dashboard = () => {
     return (
         <>
             <AuthStatus>
-                <CheckIcon active={isAuthenticated} />
+                <CheckIcon active={isAuthenticated} data-testid="check-icon"/>
                 <StatusText>{isAuthenticated ? 'User authenticated' : 'User not yet authenticated'}</StatusText>
             </AuthStatus>
             <Card>
